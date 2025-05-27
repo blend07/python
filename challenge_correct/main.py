@@ -89,4 +89,23 @@ class BMIApp:
         else:
             person = child(name, age, weight, height)
 
+        self.add_person(person)
+
+
+    def print_results(self):
+        for person in self.people:
+            person.print_info()
+
+    def run(self):
+        while True:
+            self.collect_user_data()
+            cont = input("Do you want to add another person?(yes/no):") .strip() .lower()
+            if cont != "yes":
+                break
+        self.print_results
+
+    
+
+app = BMIApp()
+app.run()
         
