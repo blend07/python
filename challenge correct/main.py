@@ -88,3 +88,5 @@ class BMIApp:
             person = adult(name, age, weight, height)
         else:
             person = child(name, age, weight, height)
+
+        
