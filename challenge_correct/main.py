@@ -102,7 +102,7 @@ class BMIApp:
             cont = input("Do you want to add another person?(yes/no):") .strip() .lower()
             if cont != "yes":
                 break
-        self.print_results
+        self.print_results()
 
     
 
