@@ -19,3 +19,6 @@ data = { 'Name': ['Alice', 'Bob', 'Leon'],
 
 df=pd.DataFrame(data)
 print(df)
+
+df2 = pd.read_csv('cs.csv')
+df2.to_csv('output_database.csv', index = False)
