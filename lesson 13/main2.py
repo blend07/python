@@ -7,10 +7,13 @@ sales = [150 ,235, 64, 82]
 sale_series = pd.Series(sales , index=products)
 print(sale_series)
 
-print(sale_series("Grape"))
+print(sale_series["Grape"])
 
 total_sales= sale_series.sum()
 print(total_sales)
+
+best_selling_products = sale_series.idxmax()
+print(f"Best selling product is: {best_selling_products}")
 
 data = { 'Name': ['Alice', 'Bob', 'Leon'],
         'Age' : [22, 30, 22],
