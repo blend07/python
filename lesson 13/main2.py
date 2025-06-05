@@ -23,5 +23,18 @@ data = { 'Name': ['Alice', 'Bob', 'Leon'],
 df=pd.DataFrame(data)
 print(df)
 
-df2 = pd.read_csv('cs.csv')
-df2.to_csv('output_database.csv', index = False)
+df2 = pd.read_csv('avgIQpercountry.csv')
+print(df2.info())
+
+print_rows = df2.head()
+
+first_rows = df2.head()
+print(first_rows)
+
+subset = df2[['Country', 'Average IQ']]
+print(subset)
+
+filtered_df = subset[subset['Average IQ'] < 100]
+print(filtered_df)
+
+
