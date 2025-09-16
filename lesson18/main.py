@@ -17,9 +17,9 @@ st.write('This app shows the best selling books on amazon from 2009 to 2022')
 st.subheader('Books')
 
 totalbooks = books_df.shape[0]
-uniquename = books_df('Name').nunique()
-averageratin = books_df('User Rating').mean()
-averageprice = books_df('Price').mean()
+uniquename = books_df['Name'].nunique()
+averageratin = books_df['User Rating'].mean()
+averageprice = books_df['Price'].mean()
 
 col1, col2, col3, col4 = st.columns(4)
 
