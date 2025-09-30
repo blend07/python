@@ -90,5 +90,72 @@ st.sidebar.header("Filter Option")
 selected_author = st.sidebar.selectbox("Select Author",["All"] + list(books_df['Author'].unique()))
 selected_year = st.sidebar.selectbox("Select Year",["All"] + list(books_df['Year'].unique()))
 selected_genre = st.sidebar.selectbox("Select Genre",["All"] + list(books_df['Genre'].unique()))
-selected_genre = st.sidebar.selectbox("Minimum User Rating",0.0,5.0,0.0,0.1)
-selected_genre = st.sidebar.selectbox("Max Price",0,books_df['Price'].max(),books_df['Price'].max())
+min_rating = st.sidebar.selectbox("Minimum User Rating",0.0,5.0,0.0,0.1)
+max_price = st.sidebar.selectbox("Max Price",0,books_df['Price'].max(),books_df['Price'].max())
+
+filered_books_df = books_df.copy()
+
+if selected_author != "All":
+    filered_books_df = filered_books_df[filered_books_df['Author']==selected_author]
+if selected_year != "All":
+    filered_books_df = filered_books_df[filered_books_df['Year']==selected_year]
+if selected_genres != "All":
+    filered_books_df = filered_books_df[filered_books_df['Genre']==selected_genre]
+
+filered_books_df = filered_books_df[
+    (filered_books_df['User Rating']>=min_rating)&(filered_books_df['Price']<=max_price)]
+
+
+
+st.subheader("Summary Statistics")
+totalbooks = filered_books_df.shape[0]
+uniquename = filered_books_df['Name'].mean()
+averageratin = filered_books_df['User Rating'].mean()
+averageprice = filered_books_df['Price'].mean()
+
+col1,col2,col3,col4 = st.columns(4)
+col1.metric("Total Books", totalbooks)
+col1.metric("Unique Title", uniquename)
+col1.metric("Average Rating", f"{averageratin: .2f}")
+col1.metric("Average Price", f"{averageratin: .2f}")
+
+st.subheader("Dataset Preview")
+st.write(filered_books_df.head())
+
+col1,col2 = st.columns(2)
+
+with col1:
+    st.subheader("Top 10 Book titles")
+    top_title = filered_books_df['Name'.value_counts().head(10)]
+    st.bar_chart(top_title)
+
+with col2:
+    st.subheader("Top 10 Authors")
+    top_authors = filered_books_df['Author'].value_counts().head(10)
+
+st.subheader("Genre Distribution")
+fig = px.pie(filered_books_df, names="Genre", title="Most Liked Genre", color='Genre',
+             color_discrete_sequence=px.colors.sequential.Plasma)
+
+st.plotly_chart(fig)
+
+st.subheader("Number of fiction vs non-fiction books over years")
+size = filered_books_df.groupby(['Year', 'Genre']).size().reset_index(name='Count')
+fig = px.bar(size, x='Year', y='Count',color = 'Genre', title="Number of Fiction vs Non-Fiction Books",
+             color_discrete_sequence=px.colors.sequential.Plasma, barmode='group'
+             )
+
+st.plotly_chart(fig)
+
+st.subheader("Top 15 authors by counts of books published (2009-2022)")
+
+top_author=filered_books_df['Author'].value_counts().head(15)
+top_authors.columns=['Author','Count']
+
+fig = px.bar(top_authors,x='Count',y='Author', orientation='h',
+             title='Top 15 authors by counts of books Published',
+             labels={'Count':'Count of Books Published','Author':'Author'},
+             color = 'Count', color_continuous_scale=px.color.sequential.Plasma)
+
+st.plotly_chart(fig)
+
