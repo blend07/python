@@ -159,3 +159,7 @@ fig = px.bar(top_authors,x='Count',y='Author', orientation='h',
 
 st.plotly_chart(fig)
 
+st.subheader("Filter Data By Genre")
+genre_filter = st.selectbox("Select Genre", filered_books_df['Genre'.unique()])
+filered_books_df = filered_books_df[filered_books_df['Genre'] == genre_filter]
+st.write(filered_books_df)
