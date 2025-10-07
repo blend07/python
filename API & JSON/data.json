@@ -1,0 +1,19 @@
+{
+    "name": "Blend",
+    "age": 18,
+    "address":{
+        "street":"123 Main Street",
+        "city":"LA",
+        "state":"California",
+        "postal":"71290"
+    },
+    "contact":[{
+            "type":"email",
+            "value":"blend@gmail.com"
+        },
+        {
+            "type":"number",
+            "value":"049331321"
+        }
+    ]
+}
