@@ -19,3 +19,12 @@ def readitems():
 @app.post("/items/")
 def createitem(name:str,price:float):
     return{"item_name":name,"item_price":price}
+
+@app.put("/item/{item_id}")
+def updateitems(item_id:int,name:str,price:float):
+    return{"item_id":item_id,"name":name,"price":price}
+
+
+@app.delete("/items/{item_id}")
+def deleteitems(item_id:int):
+    return{"item_id":f"item {item_id} deleted"}
