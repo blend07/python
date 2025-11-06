@@ -37,3 +37,9 @@ cursor.execute('''
     JOIN courses ON students.student_id = courses.student_id
 
 ''')
+
+rows = cursor.fetchall()
+for row in rows:
+    print(f"Student: {row[0]}, Course: {row[1]}")
+
+conn.close()
