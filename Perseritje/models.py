@@ -1,5 +1,5 @@
 from pydantic import BaseModel, FieldValidationInfo, field_validator, constr, conint
-from typing import Optional
+from typing import Optional, Any, Union
 
 class user(BaseModel):
     id: int
@@ -42,3 +42,8 @@ def process_value(value: Union[int,str]) -> str:
     return f"String: {value}"
 
 print(process_value())
+
+def process_anything(value:Any) ->str:
+    return f"Processed {value}"
+
+print(process_anything())
