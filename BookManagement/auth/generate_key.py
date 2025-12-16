@@ -26,4 +26,4 @@ def generate_and_save_api_key():
     print(f"API Keys updated: {new_keys}")
 
 if __name__ == "__main__":
-    generate_and_save_api_key()
+    generate_and_save_api_key

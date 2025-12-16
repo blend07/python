@@ -72,3 +72,5 @@ if __name__=="__main__":
     books_dict, authors = scrape_books()
 
     insert_data(books_dict, authors)
+
+

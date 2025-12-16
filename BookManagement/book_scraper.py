@@ -47,3 +47,6 @@ def scrape_books():
             }
             if author not in authors:
                 authors.append(author)
+    return books_dict, authors
+
+print(scrape_books())
